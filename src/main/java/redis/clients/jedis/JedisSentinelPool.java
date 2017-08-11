@@ -253,7 +253,7 @@ public class JedisSentinelPool extends Pool<Jedis> {
     protected String masterName;
     protected String host;
     protected int port;
-    protected long subscribeRetryWaitTimeMillis = 5000;
+    protected long subscribeRetryWaitTimeMillis = 1800000;
     protected volatile Jedis j;
     protected AtomicBoolean running = new AtomicBoolean(false);
 
@@ -315,7 +315,7 @@ public class JedisSentinelPool extends Pool<Jedis> {
 
           if (running.get()) {
             log.log(Level.SEVERE, "Lost connection to Sentinel at " + host + ":" + port
-                + ". Sleeping 5000ms and retrying.", e);
+                + ". Sleeping 1800000ms and retrying.", e);
             try {
               Thread.sleep(subscribeRetryWaitTimeMillis);
             } catch (InterruptedException e1) {
